@@ -27,17 +27,6 @@ watch(
     },
     { deep: true, immediate: true }
 )
-
-// watch(
-//     colors,
-//     newValue => {
-//         document.documentElement.style.setProperty('--hue', newValue.hue)
-//         for (const [key, value] of Object.entries(newValue)) {
-//             document.documentElement.style.setProperty(`--swatch-${key}`, value)
-//         }
-//     },
-//     { deep: true, immediate: true }
-// )
 </script>
 
 <template>
