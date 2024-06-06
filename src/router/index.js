@@ -9,21 +9,6 @@ const router = createRouter({
             name: 'home',
             component: HomeView,
         },
-        {
-            path: '/colors',
-            name: 'colors',
-            component: () => import('../views/ColorsView.vue'),
-        },
-        // {
-        //     path: '/dark-scheme',
-        //     name: 'dark-scheme',
-        //     component: () => import('../views/SchemeView.vue'),
-        // },
-        {
-            path: '/palette-builder',
-            name: 'palette-builder',
-            component: () => import('../views/PaletteBuilderView.vue'),
-        },
     ],
 })
 
