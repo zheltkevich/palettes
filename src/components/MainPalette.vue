@@ -31,7 +31,7 @@ watch(
     newValue => {
         $emit('changeShades', newValue)
     },
-    { deep: true }
+    { deep: true, immediate: true }
 )
 </script>
 
@@ -171,11 +171,16 @@ watch(
     &__table-row {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(40px, 1fr));
+        align-items: center;
+        justify-content: center;
     }
 
     &__service-cell {
-        display: flex;
-        align-items: center;
+        vertical-align: middle;
+        align-self: center;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
     }
 
     &__color-cell {
