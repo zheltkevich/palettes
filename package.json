@@ -15,7 +15,8 @@
         "lint:js": "eslint -c ./eslint.config.js --ignore-pattern \"dist/**\" --fix",
         "lint:css": "stylelint \"**/*.{css,scss,vue}\" --ignore-pattern \"dist/**\" --quiet --fix",
         "lint": "npm run lint:js && npm run lint:css",
-        "format": "prettier . --write --ignore-path .prettierignore"
+        "format": "prettier . --write --ignore-path .prettierignore",
+        "deploy": "gh-pages -d dist"
     },
     "lint-staged": {
         "*.{js,vue}": "npm run lint:js",
