@@ -16,7 +16,7 @@
         "lint:css": "stylelint \"**/*.{css,scss,vue}\" --ignore-pattern \"dist/**\" --quiet --fix",
         "lint": "npm run lint:js && npm run lint:css",
         "format": "prettier . --write --ignore-path .prettierignore",
-        "deploy": "npm run build && gh-pages -d dist && rm -rf dist"
+        "deploy": "npm run build && gh-pages -d dist && rm -rf dist && git push"
     },
     "lint-staged": {
         "*.{js,vue}": "npm run lint:js",
