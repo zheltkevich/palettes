@@ -1,0 +1,23 @@
+@import './base.css';
+
+/* stylelint-disable-next-line selector-max-id */
+#app {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 16px;
+    font-weight: normal;
+}
+
+a,
+.green {
+    padding: 3px;
+    color: hsl(160 100% 37% / 1);
+    text-decoration: none;
+    transition: 0.4s;
+}
+
+@media (hover: hover) {
+    a:hover {
+        background-color: hsl(160 100% 37% / 0.2);
+    }
+}

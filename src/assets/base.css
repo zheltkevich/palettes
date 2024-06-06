@@ -1,0 +1,63 @@
+/* :root {
+    --swatch-1: oklch(99% 0.05 var(--hue));
+    --swatch-2: oklch(90% 0.1 var(--hue));
+    --swatch-3: oklch(80% 0.2 var(--hue));
+    --swatch-4: oklch(72% 0.25 var(--hue));
+    --swatch-5: oklch(67% 0.31 var(--hue));
+    --swatch-6: oklch(50% 0.27 var(--hue));
+    --swatch-7: oklch(35% 0.25 var(--hue));
+    --swatch-8: oklch(25% 0.2 var(--hue));
+    --swatch-9: oklch(13% 0.2 var(--hue));
+    --swatch-10: oklch(5% 0.1 var(--hue));
+    --text-1: var(--swatch-1);
+    --text-2: var(--swatch-2);
+    --surface-1: var(--swatch-10);
+    --surface-2: var(--swatch-9);
+    --surface-3: var(--swatch-8);
+}
+
+@media (prefers-color-scheme: light) {
+    :root {
+        --text-1: var(--swatch-10);
+        --text-2: var(--swatch-9);
+        --surface-1: var(--swatch-1);
+        --surface-2: var(--swatch-2);
+        --surface-3: var(--swatch-3);
+    }
+} */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    font-weight: normal;
+}
+
+body {
+    min-height: 100vh;
+
+    /* background: var(--surface-1);
+    color: var(--text-1); */
+    font-size: 15px;
+    font-family:
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        'Segoe UI',
+        Roboto,
+        Oxygen,
+        Ubuntu,
+        Cantarell,
+        'Fira Sans',
+        'Droid Sans',
+        'Helvetica Neue',
+        sans-serif;
+    line-height: 1.6;
+    transition:
+        color 0.5s,
+        background-color 0.5s;
+    text-rendering: optimizelegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}

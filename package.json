@@ -1,0 +1,54 @@
+{
+    "name": "palettes",
+    "author": "Aleksandr Zheltkevich",
+    "private": true,
+    "version": "0.0.1",
+    "type": "module",
+    "engines": {
+        "npm": ">=10.0.0 <11.0.0",
+        "node": ">=20.0.0 <21.0.0"
+    },
+    "scripts": {
+        "dev": "vite",
+        "build": "vite build",
+        "preview": "vite preview",
+        "lint:js": "eslint -c ./eslint.config.js --ignore-pattern \"dist/**\" --fix",
+        "lint:css": "stylelint \"**/*.{css,scss,vue}\" --ignore-pattern \"dist/**\" --quiet --fix",
+        "lint": "npm run lint:js && npm run lint:css",
+        "format": "prettier . --write --ignore-path .prettierignore"
+    },
+    "lint-staged": {
+        "*.{js,vue}": "npm run lint:js",
+        "*.{vue,css,scss}": "npm run lint:css",
+        "*.{js,cjs,mjs,vue,css,scss}": "npm run format"
+    },
+    "simple-git-hooks": {
+        "pre-commit": "npx lint-staged"
+    },
+    "dependencies": {
+        "pinia": "^2.1.7",
+        "vue": "^3.4.27",
+        "vue-router": "^4.3.2"
+    },
+    "devDependencies": {
+        "@eslint/js": "^9.2.0",
+        "@vitejs/plugin-vue": "^4.6.2",
+        "@vueuse/core": "^10.9.0",
+        "eslint": "^9.2.0",
+        "eslint-config-prettier": "^9.1.0",
+        "eslint-plugin-vue": "^9.26.0",
+        "globals": "^15.2.0",
+        "lint-staged": "^15.2.2",
+        "postcss-html": "^1.7.0",
+        "prettier": "3.2.5",
+        "sass": "^1.77.1",
+        "simple-git-hooks": "^2.11.1",
+        "stylelint": "^16.5.0",
+        "stylelint-config-recommended-vue": "^1.5.0",
+        "stylelint-config-standard": "^36.0.0",
+        "stylelint-config-standard-scss": "^13.1.0",
+        "stylelint-order": "^6.0.4",
+        "stylelint-scss": "^6.3.0",
+        "vite": "^5.2.11"
+    }
+}
