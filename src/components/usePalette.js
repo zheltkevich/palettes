@@ -1,7 +1,7 @@
 import { ref, onBeforeMount, watch } from 'vue'
 import { getDefaultPalettes } from './default.palettes.js'
 export const usePalette = () => {
-    const hue = ref(0)
+    const hue = ref(150)
     const currentPalette = ref('default')
     const palettes = ref({})
     const shades = ref({})
@@ -22,7 +22,7 @@ export const usePalette = () => {
         localStorage.setItem('unsavedValues', JSON.stringify(shades.value))
     }
     const reset = () => {
-        hue.value = 0
+        hue.value = 150
         shades.value = getDefaultPalettes()[currentPalette.value]
         localStorage.removeItem('unsavedValues')
     }

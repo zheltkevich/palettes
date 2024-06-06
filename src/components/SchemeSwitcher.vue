@@ -46,15 +46,14 @@ onMounted(() => {
     display: flex;
     overflow: hidden;
     margin: 0;
-    padding: 0 12px;
-    border-radius: 16px;
+    padding: 0;
+    border: 0;
     column-gap: 16px;
 
     label {
         position: relative;
         display: flex;
         align-items: center;
-        padding: 10px 0;
         color: var(--text-2);
         font-size: 14px;
         user-select: none;

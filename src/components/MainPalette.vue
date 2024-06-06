@@ -37,6 +37,37 @@ watch(
 
 <template>
     <div class="main-palette">
+        <div class="main-palette__controls main-palette__controls--bottom">
+            <div class="main-palette__actions">
+                <div class="main-palette__actions-section">
+                    <SchemeSwitcher />
+                </div>
+                <div class="main-palette__actions-section">
+                    <button
+                        type="button"
+                        @click="reset">
+                        Reset all
+                    </button>
+                    <button
+                        type="button"
+                        @click="clear('lightness')">
+                        Clear lightness
+                    </button>
+                    <button
+                        type="button"
+                        @click="clear('chroma')">
+                        Clear chroma
+                    </button>
+                </div>
+            </div>
+            <input
+                type="range"
+                min="0"
+                max="360"
+                step="1"
+                :value="hue"
+                @input="setHue($event.target.value)" />
+        </div>
         <div class="main-palette__controls main-palette__controls--top">
             <div class="main-palette__select">
                 <label for="rows-count">Rows count:</label>
@@ -69,81 +100,52 @@ watch(
                 </select>
             </div>
         </div>
-        <div class="main-palette__colors-table">
-            <div class="main-palette__table-row">
-                <div class="main-palette__service-cell">Lightness:</div>
-                <input
-                    v-for="chromaInput in reactiveShades"
-                    :id="`c-${chromaInput.code}`"
-                    :key="chromaInput.code"
-                    class="main-palette__input main-palette__input--lightness"
-                    type="number"
-                    step="0.01"
-                    max="1"
-                    min="0"
-                    :value="chromaInput.lightness"
-                    @input="setLightness(chromaInput.code, $event.target.value)" />
-            </div>
-            <div class="main-palette__table-row">
-                <div class="main-palette__service-cell">Chroma:</div>
-                <input
-                    v-for="chromaInput in reactiveShades"
-                    :id="`l-${chromaInput.code}`"
-                    :key="chromaInput.code"
-                    class="main-palette__input main-palette__input--chroma"
-                    type="number"
-                    step="0.01"
-                    max="0.37"
-                    min="0"
-                    :value="chromaInput.chroma"
-                    @input="setChroma(chromaInput.code, $event.target.value)" />
-            </div>
-            <div
-                v-for="index in 1 * rowsCount"
-                :key="index"
-                class="main-palette__table-row">
-                <div class="main-palette__service-cell">{{ getVisibleHue(index) }}</div>
+        <div class="main-palette__wrapper">
+            <div class="main-palette__matrix">
+                <div class="main-palette__table-row">
+                    <div class="main-palette__service-cell">Lightness:</div>
+                    <input
+                        v-for="chromaInput in reactiveShades"
+                        :id="`c-${chromaInput.code}`"
+                        :key="chromaInput.code"
+                        class="main-palette__input main-palette__input--lightness"
+                        type="number"
+                        step="0.01"
+                        max="1"
+                        min="0"
+                        :value="chromaInput.lightness"
+                        @input="setLightness(chromaInput.code, $event.target.value)" />
+                </div>
+                <div class="main-palette__table-row">
+                    <div class="main-palette__service-cell">Chroma:</div>
+                    <input
+                        v-for="chromaInput in reactiveShades"
+                        :id="`l-${chromaInput.code}`"
+                        :key="chromaInput.code"
+                        class="main-palette__input main-palette__input--chroma"
+                        type="number"
+                        step="0.01"
+                        max="0.37"
+                        min="0"
+                        :value="chromaInput.chroma"
+                        @input="setChroma(chromaInput.code, $event.target.value)" />
+                </div>
                 <div
-                    v-for="shade in reactiveShades"
-                    :key="shade"
-                    class="main-palette__color-cell"
-                    :style="{
-                        '--l': shade.lightness,
-                        '--c': shade.chroma,
-                        '--h': getVisibleHue(index),
-                    }">
-                    {{ shade.code }}
-                </div>
-            </div>
-        </div>
-        <div class="main-palette__controls main-palette__controls--bottom">
-            <input
-                type="range"
-                min="0"
-                max="360"
-                step="1"
-                :value="hue"
-                @input="setHue($event.target.value)" />
-            <div class="main-palette__actions">
-                <div class="main-palette__actions-section">
-                    <button
-                        type="button"
-                        @click="reset">
-                        Reset all
-                    </button>
-                    <button
-                        type="button"
-                        @click="clear('lightness')">
-                        Clear lightness
-                    </button>
-                    <button
-                        type="button"
-                        @click="clear('chroma')">
-                        Clear chroma
-                    </button>
-                </div>
-                <div class="main-palette__actions-section">
-                    <SchemeSwitcher />
+                    v-for="index in 1 * rowsCount"
+                    :key="index"
+                    class="main-palette__table-row">
+                    <div class="main-palette__service-cell">{{ getVisibleHue(index) }}</div>
+                    <div
+                        v-for="shade in reactiveShades"
+                        :key="shade"
+                        class="main-palette__color-cell"
+                        :style="{
+                            '--l': shade.lightness,
+                            '--c': shade.chroma,
+                            '--h': getVisibleHue(index),
+                        }">
+                        {{ shade.code }}
+                    </div>
                 </div>
             </div>
         </div>
@@ -155,10 +157,15 @@ watch(
     display: flex;
     flex-direction: column;
     gap: 16px;
+    max-width: 100%;
 
-    &__table {
+    &__wrapper {
+        overflow: auto;
+    }
+
+    &__matrix {
         display: grid;
-        grid-template-rows: repeat(12, 1fr);
+        min-width: 600px;
     }
 
     &__table-row {
@@ -181,6 +188,7 @@ watch(
 
     &__controls {
         display: flex;
+        flex-wrap: wrap;
         gap: 8px;
         justify-content: space-between;
 
@@ -191,7 +199,9 @@ watch(
 
     &__actions {
         display: flex;
+        flex-wrap: wrap;
         gap: 8px;
+        align-items: flex-end;
         justify-content: space-between;
     }
 

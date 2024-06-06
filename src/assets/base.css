@@ -1,31 +1,3 @@
-/* :root {
-    --swatch-1: oklch(99% 0.05 var(--hue));
-    --swatch-2: oklch(90% 0.1 var(--hue));
-    --swatch-3: oklch(80% 0.2 var(--hue));
-    --swatch-4: oklch(72% 0.25 var(--hue));
-    --swatch-5: oklch(67% 0.31 var(--hue));
-    --swatch-6: oklch(50% 0.27 var(--hue));
-    --swatch-7: oklch(35% 0.25 var(--hue));
-    --swatch-8: oklch(25% 0.2 var(--hue));
-    --swatch-9: oklch(13% 0.2 var(--hue));
-    --swatch-10: oklch(5% 0.1 var(--hue));
-    --text-1: var(--swatch-1);
-    --text-2: var(--swatch-2);
-    --surface-1: var(--swatch-10);
-    --surface-2: var(--swatch-9);
-    --surface-3: var(--swatch-8);
-}
-
-@media (prefers-color-scheme: light) {
-    :root {
-        --text-1: var(--swatch-10);
-        --text-2: var(--swatch-9);
-        --surface-1: var(--swatch-1);
-        --surface-2: var(--swatch-2);
-        --surface-3: var(--swatch-3);
-    }
-} */
-
 *,
 *::before,
 *::after {
@@ -35,7 +7,9 @@
 }
 
 body {
+    max-width: 100%;
     min-height: 100vh;
+    margin: unset;
 
     /* background: var(--surface-1);
     color: var(--text-1); */
@@ -57,7 +31,11 @@ body {
     transition:
         color 0.5s,
         background-color 0.5s;
+    font-synthesis: none;
     text-rendering: optimizelegibility;
-    -webkit-font-smoothing: antialiased;
+    text-size-adjust: 100%;
     -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    -webkit-tap-highlight-color: transparent;
+    scroll-behavior: smooth;
 }
