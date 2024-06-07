@@ -6,15 +6,15 @@ export const usePalette = () => {
     const palettes = ref({})
     const shades = ref({})
 
-    const setHue = value => {
-        hue.value = Number(value)
-    }
+    const setHue = value => (hue.value = Number(value))
+    const chromaToPercent = value => Math.round((value * 100) / 0.37)
     const setLightness = (shadeCode, value) => {
-        shades.value[shadeCode].lightness = Number(value)
+        shades.value[shadeCode].lightness = Number(value) / 100
         localStorage.setItem('unsavedValues', JSON.stringify(shades.value))
     }
     const setChroma = (shadeCode, value) => {
-        shades.value[shadeCode].chroma = Number(value)
+        const ch = parseFloat(((0.37 / 100) * Number(value)).toFixed(4))
+        shades.value[shadeCode].chroma = ch
         localStorage.setItem('unsavedValues', JSON.stringify(shades.value))
     }
     const clear = option => {
@@ -51,6 +51,7 @@ export const usePalette = () => {
         reset,
         clear,
         currentPalette,
+        chromaToPercent,
         shades,
         hue,
         palettes,

@@ -113,7 +113,7 @@ watch(
                         step="0.01"
                         max="1"
                         min="0"
-                        :value="chromaInput.lightness"
+                        :value="Math.round(chromaInput.lightness * 100)"
                         @input="setLightness(chromaInput.code, $event.target.value)" />
                 </div>
                 <div class="main-palette__table-row">
@@ -124,10 +124,10 @@ watch(
                         :key="chromaInput.code"
                         class="main-palette__input main-palette__input--chroma"
                         type="number"
-                        step="0.01"
-                        max="0.37"
+                        step="0"
+                        max="100"
                         min="0"
-                        :value="chromaInput.chroma"
+                        :value="Math.round((chromaInput.chroma * 100) / 0.37)"
                         @input="setChroma(chromaInput.code, $event.target.value)" />
                 </div>
                 <div
