@@ -1,18 +1,18 @@
+html {
+    box-sizing: border-box;
+}
+
 *,
 *::before,
 *::after {
-    box-sizing: border-box;
-    margin: 0;
+    box-sizing: inherit;
+    margin: unset;
     font-weight: normal;
 }
 
 body {
     max-width: 100%;
     min-height: 100vh;
-    margin: unset;
-
-    /* background: var(--surface-1);
-    color: var(--text-1); */
     font-size: 15px;
     font-family:
         Inter,
